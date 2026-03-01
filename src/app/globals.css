@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAFAF8;
+  --foreground: #1A1A1A;
+  --foreground-secondary: #5C5C56;
+  --card: #FFFFFF;
+  --border: #EEEEEA;
+  --sage: #2D6A4F;
+  --sage-light: #E8F5EE;
+  --coral: #DC2626;
+  --gold: #D4A03C;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-sage: #2D6A4F;
+  --color-sage-light: #E8F5EE;
+  --color-coral: #DC2626;
+  --color-gold: #D4A03C;
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+/* Mic button pulse animation */
+@keyframes mic-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.mic-pulse {
+  animation: mic-pulse 1.2s ease-out infinite;
+}
+
+/* Bottom sheet backdrop */
+.sheet-backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Card slide-in animation */
+@keyframes card-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-enter {
+  animation: card-slide-in 0.3s ease-out both;
+}
+
+/* Safe area padding utilities */
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
