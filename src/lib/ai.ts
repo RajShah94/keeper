@@ -62,7 +62,8 @@ For ASK intent, determine the query type and generate filters:
     "status": "open",
     "vendor": "Adam",
     "cost_is_null": false,
-    "floor": 2
+    "floor": 2,
+    "description_search": "move"
   },
   "aggregate": "sum" | "count" | "avg" | null,
   "aggregate_field": "cost" | null,
@@ -95,7 +96,8 @@ Notes:
 - If a person's name is mentioned in context as doing the work (e.g. "Adam came and told me he cleaned the carpets", "Mike fixed the sink"), set that person as the vendor for all relevant entries. A vendor can be a company name OR an individual's name.
 - For ASK queries: use "vendor" filter when the user asks about work done by a specific person/company (e.g. "what work did Adam do?" → vendor: "Adam")
 - For ASK queries: use "cost_is_null": true when the user asks about work orders with no cost recorded
-- For ASK queries: use "floor" filter (1 or 2) when the user asks about an entire floor (e.g. "floor 2", "second floor"). Floor 1 = units 101-153, Floor 2 = units 201-253. Do NOT use unit_number for floor queries.`;
+- For ASK queries: use "floor" filter (1 or 2) when the user asks about an entire floor (e.g. "floor 2", "second floor"). Floor 1 = units 101-153, Floor 2 = units 201-253. Do NOT use unit_number for floor queries.
+- For ASK queries: use "description_search" to search within work order descriptions when the user asks about a specific type of work (e.g. "move in", "carpet cleaning", "faucet"). This is a partial text match (case-insensitive). Use this INSTEAD of tags for topic-based queries since tags may not match exactly. Only use tags for broad category filters.`;
 }
 
 export async function parseTranscript(transcript: string): Promise<unknown> {

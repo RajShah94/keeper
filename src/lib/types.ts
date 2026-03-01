@@ -59,6 +59,7 @@ export interface ParsedAskResult {
     vendor?: string;
     cost_is_null?: boolean;
     floor?: number;
+    description_search?: string;
   };
   aggregate?: 'sum' | 'count' | 'avg' | null;
   aggregate_field?: 'cost' | null;

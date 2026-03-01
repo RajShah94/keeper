@@ -45,6 +45,9 @@ export async function POST(request: NextRequest) {
       const floorEnd = `${filters.floor}53`;
       query = query.eq('scope', 'unit').gte('unit_number', floorStart).lte('unit_number', floorEnd);
     }
+    if (filters.description_search) {
+      query = query.ilike('description', `%${filters.description_search}%`);
+    }
 
     query = query.order('work_date', { ascending: false });
 
